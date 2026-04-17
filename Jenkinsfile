@@ -4,7 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = "shivaamaroju/trie"
         CONTAINER_NAME = "myapp-container"
-        IMAGE_TAG = "${BUILD_NUMBER}"
+        IMAGE_TAG = "v1"
     }
 
     stages {
@@ -32,10 +32,8 @@ pipeline {
         stage('Stop & Remove Old Container') {
             steps {
                 sh '''
-                if [ "$(docker ps -aq -f name=$CONTAINER_NAME)" ]; then
-                    docker stop $CONTAINER_NAME
-                    docker rm $CONTAINER_NAME
-                fi
+                    docker stop $CONTAINER_NAME || true
+                    docker rm $CONTAINER_NAME || true
                 '''
             }
         }
