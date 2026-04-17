@@ -4,7 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = "shivaamaroju/trie"
         CONTAINER_NAME = "myapp-container"
-        IMAGE_TAG = "v1"
+        IMAGE_TAG = "${BUILD_NUMBER}"
     }
 
     stages {
